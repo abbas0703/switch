@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsor Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #FFFFFF;
+        }
+
+        header {
+            background-color: #244331; /* Dark green */
+            color: #FFFFFF;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            padding: 1rem;
+        }
+
+        .sponsor-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 1rem;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .sponsor-list::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .sponsor-list::-webkit-scrollbar-thumb {
+            background: #555; /* Grey metallic */
+            border-radius: 5px;
+        }
+
+        .sponsor-list::-webkit-scrollbar-thumb:hover {
+            background: #333; /* Darker grey metallic */
+        }
+
+        .sponsor-item {
+            display: flex;
+            align-items: center;
+            background-color: #FFFFFF;
+            color: #000000;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .sponsor-logo {
+            width: 100px;
+            height: auto;
+            margin-right: 1rem;
+        }
+
+        .sponsor-details h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #2E8B57; /* Dark green */
+        }
+
+        .sponsor-details p {
+            margin: 0.5rem 0;
+        }
+
+        .sponsor-details a {
+            color: #2E8B57; /* Dark green */
+            text-decoration: none;
+        }
+
+        .sponsor-details a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .sponsor-list {
+                grid-template-columns: 1fr; /* One column on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Our Sponsors</h1>
+    </header>
+    <main>
+        <section class="sponsor-list">
+            <!-- Sponsor Item 1 -->
+            <div class="sponsor-item">
+                <img src="https://i.pinimg.com/736x/4b/52/51/4b5251b453826f9afdf4243f711a3067.jpg" alt="Coca-Cola Logo" class="sponsor-logo">
+                <div class="sponsor-details">
+                    <h2>Coca-Cola</h2>
+                    <p><strong>Phone:</strong> <a href="tel:+18001234567">+1 800 123 4567</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:contact@cocacola.com">contact@cocacola.com</a></p>
+                    <p><strong>Estimated Budget:</strong> Rs.10,00,000</p>
+                </div>
+            </div>
+            <!-- Sponsor Item 2 -->
+            <div class="sponsor-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbs6I4rHv_a23Z-W3z5VxOgo2woXTtvTJRRw&s" alt="CMR Shopping Mall Logo" class="sponsor-logo">
+                <div class="sponsor-details">
+                    <h2>CMR Shopping Mall</h2>
+                    <p><strong>Phone:</strong> <a href="tel:+919876543210">+91 98765 43210</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:info@cmrshopping.com">info@cmrshopping.com</a></p>
+                    <p><strong>Estimated Budget:</strong> Rs.4,00,000</p>
+                </div>
+            </div>
+            <!-- Sponsor Item 3 -->
+            <div class="sponsor-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUpbIPHGtYodsYpHSf3JaB7tkzFY843zpO0Q&s" alt="Red Bull Logo" class="sponsor-logo">
+                <div class="sponsor-details">
+                    <h2>Red Bull</h2>
+                    <p><strong>Phone:</strong> <a href="tel:+18002345678">+1 800 234 5678</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:support@redbull.com">support@redbull.com</a></p>
+                    <p><strong>Estimated Budget:</strong> Rs.3,00,000</p>
+                </div>
+            </div>
+            <!-- Sponsor Item 4 -->
+            <div class="sponsor-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeIYbciSh_GbQeQ0njrlhGIPZNLdcYWoRGbQ&s" alt="Sting Logo" class="sponsor-logo">
+                <div class="sponsor-details">
+                    <h2>Sting</h2>
+                    <p><strong>Phone:</strong> <a href="tel:+18003456789">+1 800 345 6789</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:contact@sting.com">contact@sting.com</a></p>
+                    <p><strong>Estimated Budget:</strong> Rs.1,00,000</p>
+                </div>
+            </div>
+            <!-- Sponsor Item 5 -->
+            <div class="sponsor-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVfTSEgAJMQfItAPgWrbJQNQLL1Ad2i65PJg&s" alt="TATA Motors Logo" class="sponsor-logo">
+                <div class="sponsor-details">
+                    <h2>TATA Motors</h2>
+                    <p><strong>Phone:</strong> <a href="tel:+911234567890">+91 12345 67890</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:info@tatamotors.com">info@tatamotors.com</a></p>
+                    <p><strong>Estimated Budget:</strong> Rs.1,50,000</p>
+                </div>
+            </div>
+            <!-- Sponsor Item 6 -->
+            <div class="sponsor-item">
+                <img src="https://logos-world.net/wp-content/uploads/2020/11/Kawasaki-Logo.png" alt="Kawasaki Logo" class="sponsor-logo">
+                <div class="sponsor-details">
+                    <h2>Kawasaki</h2>
+                    <p><strong>Phone:</strong> <a href="tel:+811234567890">+81 1234 567890</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:support@kawasaki.com">support@kawasaki.com</a></p>
+                    <p><strong>Estimated Budget:</strong> Rs.3,00,000</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

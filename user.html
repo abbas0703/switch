@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Angeles Theater</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px 0 0 20px;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-radius: 0 20px 20px 0;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .search-bar button img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .user-icon {
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 30px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-menu a {
+            color: black;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .main-menu, .second-menu {
+            display: flex;
+            justify-content: center;
+            background-color: #fff;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .menu-item {
+            margin: 0 15px;
+            position: relative;
+            cursor: pointer;
+            padding-bottom: 5px;
+        }
+
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #000;
+            left: 50%;
+            bottom: 0;
+            transition: width 0.3s, left 0.3s;
+        }
+
+        .menu-item:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .second-menu {
+            background-color: #f0f0f0;
+        }
+
+        .main-menu .menu-item {
+            font-weight: bold;
+        }
+
+        .second-menu .menu-item {
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .carousel-container {
+            flex: 0 0 70%;
+            border: 3px solid #333;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 441px;
+            display: block;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 18px;
+            z-index: 10;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .event-details {
+            flex: 0 0 25%;
+            border: 3px solid #333;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .event-details h3 {
+            margin-top: 0;
+        }
+
+        .event-details button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .event-details button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <h1>SWITCH</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Start typing">
+            <button type="submit">
+                <img src="https://static-00.iconduck.com/assets.00/search-icon-2048x2048-cmujl7en.png" alt="Search">
+            </button>
+            <div class="user-icon" onclick="toggleDropdown()">
+                &#x1F464; <!-- Unicode for user icon -->
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="/signup">Sign In</a>
+                    <a href="/login">Log In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-menu">
+        <div class="menu-item">Shows</div>
+        <div class="menu-item">Venues</div>
+        <div class="menu-item">Dates</div>
+        <div class="menu-item">News</div>
+        <div class="menu-item">Reviews</div>
+        <div class="menu-item">For You</div>
+    </div>
+    <div class="second-menu">
+        <div class="menu-item">CSE</div>
+        <div class="menu-item">ECE</div>
+        <div class="menu-item">KALAKRUTHI</div>
+        <div class="menu-item">GUSAC</div>
+        <div class="menu-item">GCGC</div>
+        <div class="menu-item">CIVIL</div>
+        <div class="menu-item">EEE</div>
+        <div class="menu-item">BIO-TECHNOLOGY</div>
+        <div class="menu-item">IT</div>
+        <div class="menu-item">MECH</div>
+    </div>
+    <div class="container">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <div class="carousel-item">
+                    <img src="https://assets.gqindia.com/photos/65390f69d674b9b8c3ecc0dd/16:9/w_1280,c_limit/Anirudh-Ravichander.jpg" alt="Event Image 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABfo8kK-hgRDWRK2M_Wdl1CeXC4ufLDzByTmNDmCyhzPs5TCzElVZ4uf6o_9Mo9WSv-YYJvDzcyq7dxyG_jpblmSD5GaCt3vI6ClSVLRm62SSLWDN48Yb86rD.jpg?r=cd7" alt="Event Image 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://static.toiimg.com/thumb/msid-104630232,width-1280,height-720,resizemode-4/104630232.jpg" alt="Event Image 3">
+                </div>
+            </div>
+            <button class="prev">❮</button>
+            <button class="next">❯</button>
+        </div>
+        <div class="event-details">
+            <h3>Event Guest: Guest Name 1</h3>
+            <p>Date: 2024-06-10</p>
+            <p>Location: Location 1</p>
+            <p>Rating: ★★★★☆</p>
+            <button>Read More</button>
+            <button>Book Tickets</button>
+        </div>
+    </div>
+    
+    <script>
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById('dropdown-menu');
+            if (dropdownMenu.style.display === 'block') {
+                dropdownMenu.style.display = 'none';
+            } else {
+                dropdownMenu.style.display = 'block';
+            }
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.user-icon') && !event.target.matches('.user-icon *')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+
+        let slidePosition = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
+
+        const eventDetails = [
+            {
+                guest: 'Guest Name 1',
+                date: '2024-06-10',
+                location: 'Location 1',
+                rating: '★★★★☆',
+            },
+            {
+                guest: 'Guest Name 2',
+                date: '2024-06-11',
+                location: 'Location 2',
+                rating: '★★★★★',
+            },
+            {
+                guest: 'Guest Name 3',
+                date: '2024-06-12',
+                location: 'Location 3',
+                rating: '★★★☆☆',
+            }
+        ];
+
+        document.querySelector('.next').addEventListener('click', moveToNextSlide);
+        document.querySelector('.prev').addEventListener('click', moveToPrevSlide);
+
+        function updateSlidePosition() {
+            const newTransform = -slidePosition * 100 + '%';
+            document.querySelector('.carousel-slide').style.transform = 'translateX(' + newTransform + ')';
+            updateEventDetails(slidePosition);
+        }
+
+        function moveToNextSlide() {
+            slidePosition = (slidePosition + 1) % totalSlides;
+            updateSlidePosition();
+        }
+
+        function moveToPrevSlide() {
+            slidePosition = (slidePosition - 1 + totalSlides) % totalSlides;
+            updateSlidePosition();
+        }
+
+        function updateEventDetails(slideIndex) {
+            document.querySelector('.event-details h3').textContent = 'Event Guest: ' + eventDetails[slideIndex].guest;
+            document.querySelector('.event-details p:nth-child(2)').textContent = 'Date: ' + eventDetails[slideIndex].date;
+            document.querySelector('.event-details p:nth-child(3)').textContent = 'Location: ' + eventDetails[slideIndex].location;
+            document.querySelector('.event-details p:nth-child(4)').textContent = 'Rating: ' + eventDetails[slideIndex].rating;
+        }
+
+        // Initialize event details for the first slide
+        updateEventDetails(slidePosition);
+    </script>
+</body>
+</html>

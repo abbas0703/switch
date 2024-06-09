@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2c2c2c;
+        }
+
+        header {
+            background-color: #5F6F52;
+            padding: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-left h1 {
+            margin: 0;
+            color: white;
+            cursor: pointer;
+        }
+
+        .nav-right ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-right ul li {
+            margin-left: 20px;
+        }
+
+        .nav-right a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .nav-right a:hover {
+            background-color: #4A5943;
+            border-radius: 5px;
+        }
+
+        section {
+            flex: 1;
+            margin: 0 10px;
+            padding: 20px;
+            background: rgba(0, 100, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .glass-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 10px 20px;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @property --rotate {
+            syntax: "<angle>";
+            initial-value: 132deg;
+            inherits: false;
+        }
+
+        :root {
+            --card-height: 65vh;
+            --card-width: calc(var(--card-height) / 1.5);
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #2c2c2c;
+            width: var(--card-width);
+            height: var(--card-height);
+            padding: 3px;
+            position: relative;
+            border-radius: 6px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            font-size: 1.2em;
+            color: #e0e0e0;
+            cursor: pointer;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: color 0.5s;
+            margin: 10px;
+        }
+
+        .card:hover {
+            color: #5F6F52;
+        }
+
+        .card:hover:before,
+        .card:hover:after {
+            animation: none;
+            opacity: 0;
+        }
+
+        .card::before {
+            content: "";
+            width: 104%;
+            height: 102%;
+            border-radius: 8px;
+            background-image: linear-gradient(
+                var(--rotate),
+                #418597,
+                #9b0959 43%,
+                #ad94d1
+            );
+            position: absolute;
+            z-index: -1;
+            top: -1%;
+            left: -2%;
+            animation: spin 2.5s linear infinite;
+        }
+
+        .card::after {
+            position: absolute;
+            content: "";
+            top: calc(var(--card-height) / 6);
+            left: 0;
+            right: 0;
+            z-index: -1;
+            height: 100%;
+            width: 100%;
+            margin: 0 auto;
+            transform: scale(0.8);
+            filter: blur(calc(var(--card-height) / 6));
+            background-image: linear-gradient(
+                var(--rotate),
+                #418597,
+                #9b0959 43%,
+                #ad94d1
+            );
+            opacity: 1;
+            transition: opacity 0.5s;
+            animation: spin 2.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                --rotate: 0deg;
+            }
+            100% {
+                --rotate: 360deg;
+            }
+        }
+
+        a {
+            color: #c5cce2;
+            text-decoration: none;
+            font-family: sans-serif;
+            font-weight: bold;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <h1 onclick="location.href='/'">Switch</h1>
+            </div>
+            <div class="nav-right">
+                <ul>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/create_event">Plan Event</a></li>
+                    <li><a href="/promote_event">Promote Event</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="card-container">
+            <section id="events" class="card">
+                <h2>Events</h2>
+                <button class="glass-button" onclick="location.href='/events'">View Previous Events</button>
+            </section>
+            <section id="plan-event" class="card">
+                <h2>Plan Your Event</h2>
+                <button class="glass-button" onclick="location.href='/create_event'">Start Planning</button>
+            </section>
+            <section id="promote-event" class="card">
+                <h2>Promote Your Event</h2>
+                <button class="glass-button" onclick="location.href='/promote_event'">Promote Now</button>
+            </section>
+        </div>
+        <h2 style="text-align: center; color: white;">All Events</h2>
+        <ul style="color: white; list-style-type: none; text-align: center;">
+            {{range .}}
+            <li>{{.Name}} - {{.Date}}</li>
+            {{end}}
+        </ul>
+    </main>
+</body>
+</html>

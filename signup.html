@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        body {
+            background: linear-gradient(135deg, #111212 0%, #3baee7 100%);
+            padding: 50px;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 50px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            border-radius: 15px;
+            background: #ffffff;
+            border: 2px solid;
+            border-image-source: linear-gradient(to right, #6a5a82, #27315d);
+            border-image-slice: 1;
+        }
+
+        .website-info {
+            margin-top: 10%;
+            margin-right: 50px;
+            color: #fff;
+            max-width: 40%;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            border-radius: 30px;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #111212;
+            box-shadow: 0 0 8px 0 #336a6a;
+            outline: none;
+        }
+
+        .form-btn {
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #111212, #3baee7);
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #1e263a, #1628eb);
+        }
+
+        .alert {
+            border-radius: 30px;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        input::placeholder {
+            color: #999;
+            opacity: 1;
+        }
+
+        input:-ms-input-placeholder {
+            color: #999;
+        }
+
+        input::-ms-input-placeholder {
+            color: #999;
+        }
+
+        input:focus::placeholder {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-align: left;
+            animation: flowColors 5s infinite;
+            background: linear-gradient(90deg, rgb(82, 77, 110), rgb(80, 72, 58), rgb(54, 54, 39), rgb(89, 113, 89), rgb(88, 88, 135), indigo, rgb(115, 73, 115));
+            background-size: 400% 100%;
+            color: white;
+         
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes flowColors {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="website-info">
+        <h1>Switch</h1>
+        <p>A social media platform that offers immersive and interactive experiences, allowing you to connect and grow with like-minded individuals.</p>
+    </div>
+    <div class="container">
+        <form action="/signup" method="post">
+            <h1>Sign Up</h1>
+            <div class="form-group">
+                <input type="text" class="form-control" name="firstname" placeholder="First Name" value="">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="lastname" placeholder="Last Name" value="">
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email" value="">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="phone" placeholder="Phone Number" value="">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="repeat_password" placeholder="Repeat Password">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select class="form-control" name="gender" id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select class="form-control" name="role" id="role">
+                    <option value="user">User</option>
+                    <option value="administrator">Administrator</option>
+                    <option value="organizer">Organizer</option>
+                </select>
+            </div>
+            <div class="form-btn">
+                <input type="submit" id="submitBtn" class="btn btn-primary" value="Register" name="submit">
+            </div>
+        </form>
+        <div>
+            <div><p>Already Registered? <a href="/login">Login Here</a></p></div>
+        </div>
+    </div>
+</body>
+</html>

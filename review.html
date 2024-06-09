@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Carousel & Customer Reviews</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-OdEXI70hRXN/sdT5KD90P7EP9z+syDuz3N5FsmBefH6IwhmoxE5BP5btO1skHCpkfGZEO7O9V9XE1xEA9m5iHQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 50px;
+  }
+
+  .carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .carousel-item {
+    min-width: 33.33%;
+    box-sizing: border-box;
+    padding: 20px;
+    background: white;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carousel-item img {
+    max-width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .carousel-item h2 {
+    font-size: 22px;
+    color: #333;
+    margin: 15px 0;
+  }
+
+  .carousel-item p {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .carousel-item button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .carousel-item .info-btn {
+    background-color: #ddd;
+    color: #333;
+  }
+
+  .carousel-item .info-btn:hover {
+    background-color: #ccc;
+  }
+
+  .carousel-item .book-btn {
+    background-color: #2b5033;
+    color: white;
+  }
+
+  .carousel-item .book-btn:hover {
+    background-color: #1b462c;
+  }
+
+  .carousel-dots {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+
+  .badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  .prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .reviews-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .reviews-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .reviews-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .review-card {
+    background: white;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: left;
+  }
+
+  .review-card img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .review-card h3 {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+  .review-card .stars {
+    color: #ffc107;
+    font-size: 18px;
+  }
+
+  .review-card .rating {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .review-card .quote {
+    font-style: italic;
+    margin: 15px 0;
+    font-size: 16px;
+  }
+
+  .reviewer-info {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .reviewer-info i {
+    margin-right: 8px;
+  }
+
+  .review-card button {
+    padding: 10px 20px;
+    margin: 5px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .review-card .info-btn {
+    background-color: #ddd;
+    color: #333;
+  }
+
+  .review-card .info-btn:hover {
+    background-color: #ccc;
+  }
+
+  .review-card .reviews-btn {
+    background-color: #214732;
+    color: white;
+  }
+
+  .review-card .reviews-btn:hover {
+    background-color: #c0392b;
+  }
+
+  .rating-summary {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 100%;
+    margin: auto;
+    background-color: #f9f9f9;
+    margin-top: 30px;
+  }
+
+  .rating-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .bar {
+    height: 20px;
+    margin-left: 10px;
+    background-color: #5F6F52;
+  }
+
+  .star {
+    color: gold;
+  }
+
+  .review-button {
+    background-color: #1d3e2b;
+    color: #FEFAE0;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+
+  @media (max-width: 768px) {
+    .review-card {
+      width: 100%;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+    }
+
+    .rating-summary {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>DON'T MISS</h1>
+  <div class="carousel-container">
+    <div class="carousel-slide">
+      <div class="carousel-item">
+        <span class="badge">ON SALE NOW</span>
+        <img src="https://t4.ftcdn.net/jpg/06/60/47/51/360_F_660475193_iIfUjz97xUuI6ulzM6bpO8LL75xr8LVC.jpg" alt="Event 1">
+        <h2>A DRAG QUEEN CHRISTMAS</h2>
+        <p>The stars of RuPaul's Drag Race ring in the holidays</p>
+        <button class="info-btn">More info</button>
+        <button class="book-btn">Book Tickets <i class="fas fa-ticket-alt"></i></button>
+      </div>
+      <div class="carousel-item">
+        <span class="badge">CLOSING SOON</span>
+        <img src="https://cdn2.allevents.in/thumbs/thumb665a4c74de505.jpg" alt="Event 2">
+        <h2>LOS ANGELES OPERA – TURANDOT</h2>
+        <p>Puccini's grand fantasy returns to the LA Opera!</p>
+        <button class="info-btn">More info</button>
+        <button class="book-btn">Book Tickets <i class="fas fa-ticket-alt"></i></button>
+      </div>
+      <div class="carousel-item">
+        <span class="badge">ON SALE NOW</span>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXkxKbSbSwQMHvAziIqDSm0JN0UbjdwwWnkg&s" alt="Event 3">
+        <h2>COCOMELON LIVE!</h2>
+        <p>The most streamed children's brand in the world</p>
+        <button class="info-btn">More info</button>
+        <button class="book-btn">Book Tickets <i class="fas fa-ticket-alt"></i></button>
+      </div>
+      <div class="carousel-item">
+        <span class="badge">CLOSING SOON</span>
+        <img src="https://www.ppsthane.com/wp-content/uploads/2016/04/Holi-celetration.jpg" alt="Event 2">
+        <h2>LOS ANGELES OPERA – TURANDOT</h2>
+        <p>Puccini's grand fantasy returns to the LA Opera!</p>
+        <button class="info-btn">More info</button>
+        <button class="book-btn">Book Tickets <i class="fas fa-ticket-alt"></i></button>
+      </div>
+      <div class="carousel-item">
+        <span class="badge">ON SALE NOW</span>
+        <img src="https://res.cloudinary.com/twenty20/private_images/t_watermark-criss-cross-10/v1436943344000/photosp/5dcd1b75-3871-41b0-bc2a-419e8212a3e8/stock-photo-people-outdoors-urban-downtown-advertising-mural-billboard-los-angeles-lamp-post-5dcd1b75-3871-41b0-bc2a-419e8212a3e8.jpg" alt="Event 3">
+        <h2>COCOMELON LIVE!</h2>
+        <p>The most streamed children's brand in the world</p>
+        <button class="info-btn">More info</button>
+        <button class="book-btn">Book Tickets <i class="fas fa-ticket-alt"></i></button>
+      </div>
+    </div>
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
+  </div>
+  <div class="carousel-dots">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
+</div>
+
+<div class="reviews-container">
+  <h2 class="reviews-title">CUSTOMER REVIEWS</h2>
+  <div class="reviews-row">
+    <div class="review-card">
+      <img src="https://imgmedia.lbb.in/media/2019/12/5e0193e3218e1d7ce92857f9_1577161699897.jpg" alt="Reviewer 1">
+      <h3>JANE DOE</h3>
+      <div class="stars">
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star star"></i>
+      </div>
+      <p class="rating">5.0</p>
+      <p class="quote">"Absolutely loved the performance. A must-see!"</p>
+      <div class="reviewer-info">
+        <i class="fa fa-user"></i> Verified Customer
+      </div>
+      <button class="info-btn">More info</button>
+      <button class="reviews-btn">View all reviews <i class="fas fa-arrow-right"></i></button>
+    </div>
+    <div class="review-card">
+      <img src="https://wp.scoopwhoop.com/wp-content/uploads/2019/06/5cf0ce6db37f122acda1e5be_f3a7dff8-916e-47b8-b319-256bac404182.jpg" alt="Reviewer 2">
+      <h3>JOHN SMITH</h3>
+      <div class="stars">
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star-half-alt star"></i>
+      </div>
+      <p class="rating">4.5</p>
+      <p class="quote">"Great experience, will definitely attend again."</p>
+      <div class="reviewer-info">
+        <i class="fa fa-user"></i> Verified Customer
+      </div>
+      <button class="info-btn">More info</button>
+      <button class="reviews-btn">View all reviews <i class="fas fa-arrow-right"></i></button>
+    </div>
+    <div class="review-card">
+      <img src="https://english.mathrubhumi.com/image/contentid/policy:1.8617705:1685981612/352055619_1725893077855422_7757428950802281821_n.jpg?$p=39858e5&f=16x10&w=852&q=0.8" alt="Reviewer 3">
+      <h3>ANNA JOHNSON</h3>
+      <div class="stars">
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star star"></i>
+        <i class="fa fa-star star"></i>
+      </div>
+      <p class="rating">5.0</p>
+      <p class="quote">"Simply amazing! Highly recommend to everyone."</p>
+      <div class="reviewer-info">
+        <i class="fa fa-user"></i> Verified Customer
+      </div>
+      <button class="info-btn">More info</button>
+      <button class="reviews-btn">View all reviews <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+  <div class="rating-summary">
+    <h2>Average Customer Rating: 4.8</h2>
+    <div class="rating-bar">
+      <span>5 stars:</span>
+      <div class="bar" style="width: 80%;"></div>
+    </div>
+    <div class="rating-bar">
+      <span>4 stars:</span>
+      <div class="bar" style="width: 15%;"></div>
+    </div>
+    <div class="rating-bar">
+      <span>3 stars:</span>
+      <div class="bar" style="width: 5%;"></div>
+    </div>
+    <div class="rating-bar">
+      <span>2 stars:</span>
+      <div class="bar" style="width: 0%;"></div>
+    </div>
+    <div class="rating-bar">
+      <span>1 star:</span>
+      <div class="bar" style="width: 0%;"></div>
+    </div>
+    <a class="review-button" href="./give_review.html" >Write a Review</a>
+  </div>
+</div>
+
+<script>
+    let slideIndex = 0;
+    showSlides();
+  
+    function moveSlide(n) {
+      showSlides(slideIndex += n);
+    }
+  
+    function currentSlide(n) {
+      showSlides(slideIndex = n - 1);
+    }
+  
+    function showSlides() {
+      let i;
+      let slides = document.getElementsByClassName("carousel-item");
+      if (slideIndex >= slides.length) { slideIndex = 0 }
+      if (slideIndex < 0) { slideIndex = slides.length - 1 }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      let endIndex = Math.min(slideIndex + 3, slides.length);
+      for (i = slideIndex; i < endIndex; i++) {
+        slides[i].style.display = "flex";
+      }
+    }
+  
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Events</title>
+    <!-- Add any CSS stylesheets or meta tags here -->
+</head>
+<body>
+    <h1>Events</h1>
+    <ul>
+        {{range .}}
+        <li>
+            <strong>Name:</strong> {{.Name}} <br>
+            <strong>Date:</strong> {{.Date}}
+        </li>
+        {{else}}
+        <li>No events found</li>
+        {{end}}
+    </ul>
+    <!-- Add any additional HTML content or scripts here -->
+</body>
+</html>

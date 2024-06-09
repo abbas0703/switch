@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Events</title>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #FFFFFF;
+}
+
+header {
+    background-color: #5F6F52;
+    padding: 20px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-left h1 {
+    margin: 0;
+    color: white;
+    cursor: pointer;
+}
+
+.nav-right ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-right ul li {
+    margin-left: 20px;
+}
+
+.nav-right a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.nav-right a:hover {
+    background-color: #4A5943;
+    border-radius: 5px;
+}
+
+.page-title {
+    background-color: #244331;
+    color: #FFFFFF;
+    padding: 1rem;
+    text-align: center;
+    margin: 0;
+}
+
+main {
+    padding: 1rem;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    background-color: #000000;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    animation: form-fade-in 0.5s ease-in-out;
+    width: 38.25rem;
+    margin-left: 28.125rem;
+    border-radius: 5px;
+}
+
+@keyframes form-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+label {
+    font-weight: bold;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input, textarea {
+    width: calc(100% - 10px);
+    padding: 0.5rem;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #FFF;
+}
+
+input[type="date"], input[type="time"], input[type="url"] {
+    background-color: #2E2E2E;
+    color: #FFF;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 0.75rem;
+    background-color: #2E8B57;
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #244331;
+    transform: scale(1.05);
+}
+
+a button {
+    background-color: #375a5e;
+}
+
+a button:hover {
+    background-color: #244331;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #2E8B57;
+    padding: 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+}
+
+ul li span {
+    display: block;
+    color: #FFFFFF;
+}
+
+.nav-right button{
+    background-color: #5F6F52;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <h1 onclick="location.href='/'" style="cursor:pointer;">Switch</h1>
+            </div>
+            <div class="nav-right">
+                <ul>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/create_event">Plan Event</a></li>
+                    <li><a href="/promote">Promote Event</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <h1 class="page-title">Manage Events</h1>
+    <main>
+        <form method="post">
+            <label for="name">Event Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="date">Event Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="venue">Venue:</label>
+            <input type="text" id="venue" name="venue" required>
+            <label for="budget">Estimated Budget (Rs.):</label>
+            <input type="text" id="budget" name="budget" required>
+            <label for="startime">Event Start Time:</label>
+            <input type="text" id="startime" name="startime" required>
+            <label for="endtime">Event End Time:</label>
+            <input type="text" id="endtime" name="endtime" required>
+            <div class="buttons full-width">
+                <button> <a href="/sponsors"type="button">Find Sponsors</a></button>
+                <button type="submit" id="bus">Add Event</button>
+            </div>
+        </form>
+        
+    </main>
+</body>
+</html>
