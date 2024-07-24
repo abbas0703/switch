@@ -61,7 +61,7 @@ type TempUser struct {
 
 func main() {
 	// MongoDB Atlas connection string
-	mongoURI := "mongodb+srv://jidaar718:tRelmEXYu7NEcGFz@cluster0.j9n5kuh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+	mongoURI := "mongodb+srv://#########.j9n5kuh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 	// Connect to MongoDB Atlas
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
