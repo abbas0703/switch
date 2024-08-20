@@ -69,3 +69,52 @@ This is a web-based Event Management System built using Go and MongoDB. The syst
 ├── main.go
 └── README.md
 
+
+## Endpoints
+
+- `/`: Home page displaying all events.
+- `/signup`: User registration page.
+- `/login`: User login page.
+- `/verify`: Email verification page.
+- `/events`: Event creation and management page.
+- `/sponsors`: Sponsors page.
+- `/promote`: Promote events page.
+- `/review`: Review events page.
+
+## Development
+
+### Adding New Templates
+
+1. Create a new `.html` file in the `templates` directory.
+2. Update the `var templates` in `main.go` to include the new template.
+
+### Database Schema
+
+#### Users Collection:
+
+- `username`: User's email (used as a username)
+- `password`: SHA-256 hashed password
+- `email`: User's email
+- `first_name`, `last_name`: User's first and last name
+- `phone`: User's phone number
+- `gender`: User's gender
+- `role`: Role assigned to the user (user, administrator, organizer)
+
+#### Events Collection:
+
+- `name`: Name of the event
+- `date`: Date of the event
+- `organizer`: Name of the organizer
+- `venue`: Venue of the event
+- `start`: Start time of the event
+- `end`: End time of the event
+- `budget`: Budget for the event
+
+## Contribution
+
+Feel free to fork this repository, make your changes, and submit a pull request. Contributions are welcome!
+
+## Contact
+
+For any inquiries or issues, please open an issue on the GitHub repository or contact me at `jabbas@gitam.in`.
+
