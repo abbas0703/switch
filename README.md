@@ -68,7 +68,7 @@ This is a web-based Event Management System built using Go and MongoDB. The syst
 │   └── (static files such as CSS, JavaScript, images)
 ├── main.go
 └── README.md
-
+```
 
 ## Endpoints
 
